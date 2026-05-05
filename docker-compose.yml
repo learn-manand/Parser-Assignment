@@ -1,0 +1,19 @@
+services:
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Parser.API/Dockerfile
+    container_name: parser-api
+    ports:
+      - "5000:8080"
+
+  frontend:
+    build:
+      context: ./frontend/parser-ui
+      dockerfile: Dockerfile
+    container_name: parser-ui
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
