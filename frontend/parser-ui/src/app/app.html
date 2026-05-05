@@ -1,0 +1,39 @@
+<div class="container">
+
+  <h1>Parser Assignment</h1>
+
+  <form #form="ngForm" (ngSubmit)="submit(form)">
+
+    <textarea
+      name="inputText"
+      [(ngModel)]="inputText"
+      #inputCtrl="ngModel"
+      rows="14"
+      placeholder="Paste email text here"
+      required>
+    </textarea>
+
+    <div class="error" *ngIf="form.submitted && inputCtrl.invalid">
+      Input text is required.
+    </div>
+
+    <div class="buttons">
+      <button type="submit">Submit</button>
+      <button type="button" class="clear" (click)="clear(form)">Clear</button>
+    </div>
+
+  </form>
+
+  <div *ngIf="loading">
+    <p>Processing...</p>
+  </div>
+
+  <div *ngIf="!loading && error">
+    <div class="error">{{ error }}</div>
+  </div>
+
+  <div *ngIf="!loading && resultJson">
+    <pre>{{ resultJson }}</pre>
+  </div>
+
+</div>
